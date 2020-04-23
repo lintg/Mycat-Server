@@ -3,7 +3,9 @@
 <mycat:schema xmlns:mycat="http://io.mycat/">
 
 	<schema name="TESTDB" checkSQLschema="false" sqlMaxLimit="100">
-			<table name="SAM_TEST"  dataNode="dn1" primaryKey="ID"  autoIncrement="true" type="global"/>
+			<!-- type="global" 为全局表，在每个节点都会存一份          rule="auto-sharding-long" -->
+			<table name="SAM_TEST"  dataNode="dn1,dn2,dn3" primaryKey="ID"  autoIncrement="true" 
+				 rule="mod-long"/>
 			<table name="mycat_sequence"  dataNode="dn1" primaryKey="name"/>
 	</schema>
 	<!-- <dataNode name="dn1$0-743" dataHost="localhost1" database="db$0-743"
